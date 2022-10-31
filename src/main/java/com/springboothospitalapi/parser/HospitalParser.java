@@ -34,9 +34,9 @@ public class HospitalParser implements Parser<Hospital>{
         hospital.setRoadNameAddress(row[19]);
         hospital.setHospitalName(row[21]);
         hospital.setBusinessTypeName(row[25]);
-        hospital.setHealthcareProviderCount(Float.parseFloat(row[29]));
-        hospital.setPatientRoomCount(Float.parseFloat(row[30]));
-        hospital.setTotalNumberOfBeds(Float.parseFloat(row[31]));
+        hospital.setHealthcareProviderCount((int)Float.parseFloat(row[29]));
+        hospital.setPatientRoomCount((int)Float.parseFloat(row[30]));
+        hospital.setTotalNumberOfBeds((int)Float.parseFloat(row[31]));
         hospital.setTotalAreaSize(Float.parseFloat(row[32]));
 
         return hospital;

@@ -24,8 +24,8 @@ public class Hospital {
     private String roadNameAddress;
     private String hospitalName;
     private String businessTypeName;
-    private float healthcareProviderCount;
-    private float patientRoomCount;
-    private float totalNumberOfBeds;
+    private int healthcareProviderCount;
+    private int patientRoomCount;
+    private int totalNumberOfBeds;
     private float totalAreaSize;
 }
