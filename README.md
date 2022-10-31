@@ -3,6 +3,13 @@
 ### Data 출처
 - [공공데이터포털](https://www.data.go.kr/data/15045024/fileData.do)
 
+
+### DataBase 설계
+
+<details>
+<summary>nation_wide_hospitals Table</summary>
+<div>
+
 | no | 컬럼명 | 타입 | 설명 |
 | --- | --- | --- | --- |
 | 1 | id(pk) | Int | 번호 |
@@ -22,6 +29,10 @@
 | 15 | total_number_of_beds | tinyint(2) | 병상수 |
 | 16 | total_area_size | float | 총면적 |
 |  |  | 이 테이블에 만들지 않음 | 진료과목내용ID(테이블 분리필요) |
+
+</div>
+</details>
+
 
 ### Errors
 
