@@ -35,6 +35,13 @@ class HospitalParserTest {
         Hospital hospital = hospitalParser.parse(line1);
         hospitalDao.add(hospital); // Autowired 해서 new 안해도 됨
         assertEquals(1, hospitalDao.getCount());
+
+        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
+        assertEquals(selectedHospital.getId(), hospital.getId());
+        assertEquals(selectedHospital.getOpenServiceName(), hospital.getOpenServiceName());
+        assertEquals(selectedHospital.getHospitalName(), hospital.getHospitalName());
+        assertEquals(selectedHospital.getLicenseDate(), hospital.getLicenseDate());
+        assertEquals(selectedHospital.getTotalAreaSize(), hospital.getTotalAreaSize());
     }
 
     @Test
