@@ -43,7 +43,7 @@ public class HospitalDao {
     public void deleteAll() {
         this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals;");
     }
-    
+
     RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
         Hospital hospital = new Hospital();
 
@@ -53,4 +53,8 @@ public class HospitalDao {
 
         return hospital;
     };
+
+    public Hospital findById(int id) {
+        return this.jdbcTemplate.queryForObject("SELECT * FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper , id);
+    }
 }
