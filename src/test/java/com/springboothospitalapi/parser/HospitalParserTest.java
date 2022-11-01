@@ -26,14 +26,15 @@ class HospitalParserTest {
     HospitalDao hospitalDao;
 
     @Test
-    @DisplayName("Hospital이 insert가 잘 되는지 Test")
-    void HospitalinsertTest() {
+    @DisplayName("Hospital이 Insert 와 Select가 잘 되는지 Test")
+    void insertAndSelect() {
+        hospitalDao.deleteAll();
+        assertEquals(0, hospitalDao.getCount());
 
-        HospitalParser hp = new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-
+        HospitalParser hospitalParser = new HospitalParser();
+        Hospital hospital = hospitalParser.parse(line1);
         hospitalDao.add(hospital); // Autowired 해서 new 안해도 됨
-        // get을 아직 구현 안해서 assert는 직접 확인
+        assertEquals(1, hospitalDao.getCount());
     }
 
     @Test
@@ -44,7 +45,7 @@ class HospitalParserTest {
         assertTrue(hospitalList.size() > 1000);
         assertTrue(hospitalList.size() > 10000);
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println(hospitalList.get(i).getHospitalName());
         }
 
@@ -62,8 +63,8 @@ class HospitalParserTest {
 
         assertEquals(1, hospital.getId());
         assertEquals("의원", hospital.getOpenServiceName());
-        assertEquals(3620000,hospital.getOpenLocalGovernmentCode());
-        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber());
+        assertEquals(3620000, hospital.getOpenLocalGovernmentCode());
+        assertEquals("PHMA119993620020041100004", hospital.getManagementNumber());
         assertEquals(LocalDateTime.of(1999, 6, 12, 0, 0, 0), hospital.getLicenseDate()); //19990612
         assertEquals(1, hospital.getBusinessStatus());
         assertEquals(13, hospital.getBusinessStatusCode());

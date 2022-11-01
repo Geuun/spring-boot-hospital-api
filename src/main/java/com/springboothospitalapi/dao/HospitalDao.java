@@ -2,6 +2,7 @@ package com.springboothospitalapi.dao;
 
 import com.springboothospitalapi.domain.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,11 +36,11 @@ public class HospitalDao {
     }
 
     public int getCount() {
-        String sql = "SELECT COUNT (id) FROM `spring-boot-hospital`.`nation_wide_hospitals`;";
+        String sql = "SELECT COUNT(id) FROM `spring-boot-hospital`.nation_wide_hospitals;";
         return this.jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
     public void deleteAll() {
-        this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.`nation_wide_hospitals`;");
+        this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals;");
     }
 }
