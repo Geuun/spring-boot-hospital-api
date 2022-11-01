@@ -12,8 +12,6 @@ public class HospitalParser implements Parser<Hospital>{
 
         // String -> int 파싱
         String[] row = str.split(",");
-        System.out.println(Arrays.toString(row));
-        System.out.println(row[29]);
 
         Hospital hospital = new Hospital();
 
