@@ -43,4 +43,14 @@ public class HospitalDao {
     public void deleteAll() {
         this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals;");
     }
+    
+    RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
+        Hospital hospital = new Hospital();
+
+        hospital.setId(rs.getInt("id"));
+        hospital.setOpenServiceName(rs.getString("open_service_name"));
+        hospital.setHospitalName(rs.getString("hospital_name"));
+
+        return hospital;
+    };
 }
