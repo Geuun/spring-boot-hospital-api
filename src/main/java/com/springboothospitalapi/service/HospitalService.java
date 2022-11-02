@@ -5,6 +5,7 @@ import com.springboothospitalapi.domain.Hospital;
 import com.springboothospitalapi.domain.dto.HospitalDto;
 import com.springboothospitalapi.parser.ReadLineContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,6 +22,7 @@ public class HospitalService {
         this.hospitalDao = hospitalDao;
     }
 
+    @Transactional
     public int insertLargeVolumeHospitalData(String filename) {
         int cnt = 0;
         try {
