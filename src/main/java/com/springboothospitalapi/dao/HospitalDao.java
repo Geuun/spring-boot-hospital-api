@@ -66,6 +66,10 @@ public class HospitalDao {
     }
 
     public Hospital findById(int id) {
-        return this.jdbcTemplate.queryForObject("SELECT * FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
+        return this.jdbcTemplate.queryForObject("SELECT FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
+    }
+
+    public Hospital deleteById(int id) {
+        return  this.jdbcTemplate.queryForObject("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
     }
 }
