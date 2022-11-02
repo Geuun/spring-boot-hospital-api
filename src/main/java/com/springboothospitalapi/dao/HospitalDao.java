@@ -69,7 +69,7 @@ public class HospitalDao {
         return this.jdbcTemplate.queryForObject("SELECT FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
     }
 
-    public Hospital deleteById(int id) {
-        return  this.jdbcTemplate.queryForObject("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
+    public void deleteById(int id) {
+        this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals", rowMapper, id);
     }
 }
