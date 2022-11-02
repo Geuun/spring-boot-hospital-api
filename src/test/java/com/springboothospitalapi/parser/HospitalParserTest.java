@@ -2,6 +2,7 @@ package com.springboothospitalapi.parser;
 
 import com.springboothospitalapi.dao.HospitalDao;
 import com.springboothospitalapi.domain.Hospital;
+import com.springboothospitalapi.service.HospitalService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class HospitalParserTest {
 
     String line1 = "1,의원,01_01_02_P,3620000,PHMA119993620020041100004,19990612,,1,영업/정상,13,영업중,,,,,062-515-2875,,500881.0,광주광역시 북구 풍향동 565번지 4호 3층,광주광역시 북구 동문대로 24 3층 (풍향동),61205.0,효치과의원,20211100000000.0,U,2021.11.17 2:40,치과의원,192630.7351,185314.6176,치과의원,1.0,0.0,0.0,52.29,401,치과,,,,0.0,0.0,,,0.0,";
-//    String line770 =
 
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext;
 
     @Autowired
     HospitalDao hospitalDao;
+
+    @Autowired
+    HospitalService hospitalService;
 
     @Test
     @DisplayName("Hospital이 Insert 와 Select가 잘 되는지 Test")
@@ -58,17 +61,13 @@ class HospitalParserTest {
     @Test
     @DisplayName("대용량 데이터에도 잘 파싱이 되는지 Test")
     void oneHundradThousandRowsTest() throws IOException {
+        hospitalDao.deleteAll();
         String fileName = "/Users/geun/Desktop/CodeLion/data/spring-boot-hospital-api/PreprocessedHospitalData.csv";
-        List<Hospital> hospitalList = hospitalReadLineContext.readByLine(fileName);
-        assertTrue(hospitalList.size() > 1000);
-        assertTrue(hospitalList.size() > 10000);
+        int dataCnt = this.hospitalService.insertLargeVolumeHospitalData(fileName);
+        assertTrue(dataCnt > 1000);
+        assertTrue(dataCnt > 10000);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(hospitalList.get(i).getHospitalName());
-        }
-
-        System.out.printf("파싱된 데이터의 수: %d", hospitalList.size());
-
+        System.out.printf("파싱된 데이터의 수: %d", dataCnt);
     }
 
     @Test
