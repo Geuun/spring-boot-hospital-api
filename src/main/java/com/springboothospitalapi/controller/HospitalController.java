@@ -23,5 +23,9 @@ public class HospitalController {
         this.hospitalDao = hospitalDao;
     }
 
-    
+    @GetMapping("/{id}")
+    public ResponseEntity<Hospital> get(@PathVariable Integer id) {
+        Hospital hospital = hospitalDao.findById(id);
+            return ResponseEntity.ok().body(hospital);
+    }
 }
