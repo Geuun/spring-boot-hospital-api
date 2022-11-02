@@ -28,6 +28,9 @@ class HospitalParserTest {
     @Autowired
     HospitalService hospitalService;
 
+    @Autowired
+    HospitalParser hospitalParser;
+
     @Test
     @DisplayName("Hospital이 Insert 와 Select가 잘 되는지 Test")
     void insertAndSelect() {
@@ -74,9 +77,8 @@ class HospitalParserTest {
     @DisplayName("csv 1줄을 Hospital로 잘 만드는지 Test")
     void convertToHospital() {
 
-        HospitalParser hp = new HospitalParser();
-        System.out.println((hp.parse(line1)));
-        Hospital hospital = hp.parse(line1);
+        System.out.println((hospitalParser.parse(line1)));
+        Hospital hospital = hospitalParser.parse(line1);
 
         assertEquals(1, hospital.getId());
         assertEquals("의원", hospital.getOpenServiceName());
@@ -94,5 +96,23 @@ class HospitalParserTest {
         assertEquals(0, hospital.getPatientRoomCount());
         assertEquals(0, hospital.getTotalNumberOfBeds());
         assertEquals(52.29f, hospital.getTotalAreaSize());
+    }
+
+    @Test
+    @DisplayName("add 와 deleteById 메서드 Test")
+    void addAndDeleteById() {
+
+        hospitalDao.deleteAll();
+        assertEquals(0, hospitalDao.getCount());
+        Hospital hospital = hospitalParser.parse(line1);
+        hospitalDao.add(hospital);
+        assertEquals(1,hospitalDao.getCount());
+        hospitalDao.deleteById(hospital.getId());
+        assertEquals(0, hospitalDao.getCount());
+
+        for (int i = 0 ; i < hospitalDao.getCount(); i++ ) {
+        }
+
+
     }
 }

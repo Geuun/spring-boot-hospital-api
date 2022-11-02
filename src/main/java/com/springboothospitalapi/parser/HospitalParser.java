@@ -1,10 +1,11 @@
 package com.springboothospitalapi.parser;
 
 import com.springboothospitalapi.domain.Hospital;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-
+@Component
 public class HospitalParser implements Parser<Hospital>{
     @Override
     public Hospital parse(String str) {
