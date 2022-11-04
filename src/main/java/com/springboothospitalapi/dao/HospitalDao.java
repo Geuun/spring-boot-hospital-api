@@ -66,7 +66,7 @@ public class HospitalDao {
     }
 
     public void deleteById(int id) {
-        this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", rowMapper, id);
+        this.jdbcTemplate.update("DELETE FROM `spring-boot-hospital`.nation_wide_hospitals WHERE id = ?", id);
     }
 
     public void deleteAll() {
