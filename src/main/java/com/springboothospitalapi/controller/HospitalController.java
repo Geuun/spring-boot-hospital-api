@@ -18,12 +18,11 @@ public class HospitalController {
 
     private final HospitalDao hospitalDao;
 
-
     public HospitalController(HospitalDao hospitalDao) {
         this.hospitalDao = hospitalDao;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/select/{id}")
     public ResponseEntity<Hospital> get(@PathVariable Integer id) {
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
@@ -35,16 +34,9 @@ public class HospitalController {
         }
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Hospital> deleteById(@PathVariable Integer id) {
-        Hospital hospital = hospitalDao.deleteById(id);
-        Optional<Hospital> opt = Optional.of(hospital);
-
-        if (!opt.isEmpty()) {
-            return ResponseEntity.ok().body(hospital);
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Hospital());
-        }
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id) {
+        hospitalDao.deleteById(id);
+        return id + "에 해당하는 정보가 삭제되었습니다.";
     }
 }
