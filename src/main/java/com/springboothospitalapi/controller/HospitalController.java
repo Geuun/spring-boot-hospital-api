@@ -39,4 +39,10 @@ public class HospitalController {
         hospitalDao.deleteById(id);
         return id + "에 해당하는 정보가 삭제되었습니다.";
     }
+
+    @DeleteMapping("/deleteall")
+    public String deleteAll() {
+        hospitalDao.deleteAll();
+        return "모든 데이터가 삭제되었습니다.";
+    }
 }
