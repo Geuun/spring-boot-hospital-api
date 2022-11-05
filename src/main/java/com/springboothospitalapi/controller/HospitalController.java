@@ -2,7 +2,6 @@ package com.springboothospitalapi.controller;
 
 import com.springboothospitalapi.dao.HospitalDao;
 import com.springboothospitalapi.domain.Hospital;
-import com.springboothospitalapi.domain.dto.HospitalDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +23,16 @@ public class HospitalController {
         this.hospitalDao = hospitalDao;
     }
 
+    @PostMapping("/post/add")
+    public Hospital add(@RequestBody Hospital hospital) {
+        log.info("/hospitals/post/add, add()");
+        hospitalDao.add(hospital);
+        return hospital;
+    }
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Hospital> get(@PathVariable Integer id) {
-        log.info("/get/{id}, findById()");
+        log.info("/hospitals/get/{id}, findById()");
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
 
@@ -39,14 +45,14 @@ public class HospitalController {
 
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Integer id) {
-        log.info("/delete/{id}, deleteById");
+        log.info("/hospitals/delete/{id}, deleteById()");
         hospitalDao.deleteById(id);
         return id + "에 해당하는 정보가 삭제되었습니다.";
     }
 
     @DeleteMapping("/delete/deleteall")
     public String deleteAll() {
-        log.info("/delete/deleteall, deleteAll()");
+        log.info("/hospitals/delete/deleteall, deleteAll()");
         hospitalDao.deleteAll();
         return "모든 데이터가 삭제되었습니다.";
     }
