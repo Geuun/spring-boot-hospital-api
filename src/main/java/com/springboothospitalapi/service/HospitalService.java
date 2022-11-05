@@ -2,7 +2,6 @@ package com.springboothospitalapi.service;
 
 import com.springboothospitalapi.dao.HospitalDao;
 import com.springboothospitalapi.domain.Hospital;
-import com.springboothospitalapi.domain.dto.HospitalDto;
 import com.springboothospitalapi.parser.ReadLineContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

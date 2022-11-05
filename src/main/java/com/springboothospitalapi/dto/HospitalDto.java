@@ -1,9 +1,6 @@
-package com.springboothospitalapi.domain.dto;
+package com.springboothospitalapi.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class HospitalDto {
     private int id;
     private String openServiceName;
